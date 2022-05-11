@@ -11,7 +11,10 @@ options = optimoptions(@ga, ...
                     'FunctionTolerance', 1e-8, ...
                     'PlotFcn', @gaplotbestf);
 
-[x,fval] = ga(@max_fun,n_vars,[],[],[],[],lb,ub,[],options);
+v1 = 2;
+v2 = 5;
+
+[x,fval] = ga(@(x)max_fun(x,v1,v2),n_vars,[],[],[],[],lb,ub,[],options);
 
 disp(x)
 disp(fval)
@@ -23,9 +26,9 @@ disp(fval)
 
 % Easy
 
-function y = max_fun(x)
+function y = max_fun(x,v1,v2)
 
-   y = 100 * (x(1)^2 - x(2)) ^2 + (1 - x(1))^2;
+   y = 100 * (x(1)^2*v1 - x(2)*v2) ^2 + (1 - x(1))^2;
    %y = -y;
 
 end
